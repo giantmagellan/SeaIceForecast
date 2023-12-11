@@ -16,6 +16,7 @@ Avoid sending too many requests by manually reading in the data set once it has 
   - [Pre-requisites](#pre-requisites)
 - [Usage](#usage)
   - [Run Analysis](#run-analysis)
+  - [Collaboration](#collaboration)
   - [End Working Session](#end-working-session)
 
 ## Installation
@@ -41,6 +42,10 @@ Activate the virtual environment
 ### Run Analysis
 
 Once the virtual environment has been activate, open the [main](https://github.com/giantmagellan/SeaIceForecast/blob/main/main.ipynb) notebook and simply click 'Run all'.  
+
+### Collaboration
+
+To help further the project, see [development](https://github.com/giantmagellan/SeaIceForecast/blob/main/development/) notebooks.
 
 ### End Working Session
 
