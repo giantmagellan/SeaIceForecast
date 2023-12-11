@@ -24,17 +24,17 @@ Avoid sending too many requests by manually reading in the data set once it has 
 
 To run [main](https://github.com/giantmagellan/SeaIceForecast/blob/main/main.ipynb) and perform analysis, first install and activate the [Pipenv](https://docs.pipenv.org/) virtual environment.
 
-Install Pipenv
+Install Conda
 
-``` python -m pip install pipenv ```
+If Conda is not yet installed, please see [Conda Installation](https://docs.conda.io/projects/conda/en/stable/user-guide/install/index.html)
 
-Create virtual environment
+Create virtual environment from [environment.yml](https://github.com/giantmagellan/SeaIceForecast/blob/main/environment.yml) file
 
-``` python -m pipenv install ```
+``` conda env create -f environment.yml ```
 
-To activate the project's virtual environment and it's packages, run ...
+Activate the virtual environment
 
-``` python -m pipenv shell ```
+``` conda activate seaiceextent ```
 
 ## Usage
 
@@ -44,4 +44,4 @@ Once the virtual environment has been activate, open the [main](https://github.c
 
 ### End Working Session
 
-``` exit ```
+``` conda deactivate ```

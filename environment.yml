@@ -1,0 +1,12 @@
+name: seaiceextent
+dependencies:
+  - python=3.9
+  - numpy
+  - pandas
+  - urllib3
+  - pathlib
+  - scikit-learn
+  - matplotlib
+  - seaborn
+  - openpyxl 
+  - jupyter

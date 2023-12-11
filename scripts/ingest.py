@@ -130,4 +130,3 @@ def sie_index_transformer():
     df.to_csv(dest_path)
 
     return df
-
