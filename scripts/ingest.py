@@ -1,5 +1,7 @@
 from urllib.request import urlretrieve
 from pathlib import Path
+import os
+import glob
 import pandas as pd
 import datetime
 
@@ -25,6 +27,40 @@ def retrieve_sie_data():
 
      return path
 
+def update_data_dir():
+    """
+    Check for any existing staging files and delete files with dates older than week.
+    """
+    # Check for existing csv files
+    data_path = "../data/"
+    path = Path(__file__).parent / data_path
+
+    child_dirs = [d for d in os.listdir(path)]
+
+    for child_dir in child_dirs:
+        # Add child directory name to path
+        data_path = f"../data/{child_dir}"
+        path = Path(__file__).parent / data_path
+
+        # Week-old files
+        prev_week = int(datetime.datetime.now().strftime('%Y%m%d')) - 7
+        
+        csv_files = glob.glob(os.path.join(path, '*.csv'))
+
+        for csv in csv_files:
+            # Extract file name
+            filename = os.path.basename(csv)
+            # Extract date suffix
+            date_suffix = filename[-8:]
+
+            try: 
+                filedate = datetime.datetime.strptime(date_suffix, '%Y%m%d')
+                if filedate < prev_week:
+                    os.remove(csv)
+                    print(f'Deleted file: {filename}')
+            except ValueError:
+                pass
+
 def convert_column_names(df):
     """
     Convert column names to lower case and replace spaces with underscores.
@@ -48,6 +84,8 @@ def sie_index_transformer():
     Transform Sea Ice Index Data into standardized format.
     :return df: transformed dataframe
     """
+    # Ensure there are no pre-existing staging files
+    update_data_dir()
 
     # Retrieve then import excel sheet download from NSIDC
     filename = retrieve_sie_data()
