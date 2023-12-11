@@ -22,7 +22,7 @@ Avoid sending too many requests by manually reading in the data set once it has 
 
 ### Pre-requisites
 
-To run [main](https://github.com/giantmagellan/SeaIceForecast/blob/main/main.ipynb) and perform analysis, first install and activate the [Pipenv](https://docs.pipenv.org/) virtual environment.
+To run [main](https://github.com/giantmagellan/SeaIceForecast/blob/main/main.ipynb) and perform analysis, first install (if not already) and activate the [Conda](https://docs.conda.io/projects/conda/en/stable/index.html) virtual environment.
 
 Install Conda
 
