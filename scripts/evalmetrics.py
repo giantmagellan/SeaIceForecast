@@ -1,3 +1,4 @@
+import pandas as pd
 import numpy as np
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 
@@ -35,3 +36,35 @@ def eval_metrics(test_set, forecast_set):
     mape = calculate_mape(test_set, forecast_set)
 
     return rmse, mape
+
+def metric_report(pred_set):
+    """
+    :param pred_set: df, prediction set
+    :return results: df, results report
+    """
+
+    # Outcome Variable parameter
+    outcome_var = pred_set['extent_million_sq_km']
+
+    # Calculate Evaluation Metrics
+    rmse_fc, mape_fc = eval_metrics(outcome_var, pred_set['naive_forecast'])
+    rmse_sa, mape_sa = eval_metrics(outcome_var, pred_set['simple_avg_forecast'])
+    rmse_ma, mape_ma = eval_metrics(outcome_var, pred_set['moving_avg_forecast'])
+    rmse_hw, mape_hw = eval_metrics(outcome_var, pred_set['holt_winter_forecast'])
+    rmse_sarima, mape_sarima = eval_metrics(outcome_var, pred_set['sarima'])
+
+    # Print Evaluation Results
+    results = pd.DataFrame({'Method':['Naive Forecast', 
+                                    'Simple Average', 
+                                    'Moving Average',
+                                    'Holt-Winters',
+                                    'SARIMA'
+                                    ], 
+                            'MAPE': [mape_fc, mape_sa, mape_ma, mape_hw, mape_sarima], 
+                            'RMSE': [rmse_fc, rmse_sa, rmse_ma, rmse_hw, rmse_sarima],
+                            'Forecast': [pred_set['naive_forecast'].iloc[0], 
+                                        pred_set['simple_avg_forecast'].iloc[0],
+                                        pred_set['moving_avg_forecast'].iloc[0],
+                                        None,
+                                        None]})
+    print(results)
