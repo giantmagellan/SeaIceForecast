@@ -18,6 +18,7 @@ Avoid sending too many requests by manually reading in the data set once it has 
   - [Run Analysis](#run-analysis)
   - [Collaboration](#collaboration)
   - [End Working Session](#end-working-session)
+- [Acknowledgements](#acknowledgements)
 
 ## Installation
 
@@ -50,3 +51,9 @@ To help further the project, see [development](https://github.com/giantmagellan/
 ### End Working Session
 
 ``` conda deactivate ```
+
+## Acknowledgements
+
+Author: Bryan Flores
+
+Instituion: Univ. of San Diego, Masters of Applied Data Science

@@ -10,3 +10,5 @@ dependencies:
   - seaborn
   - openpyxl 
   - jupyter
+  - statsmodels
+  - pmdarima

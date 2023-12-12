@@ -43,7 +43,7 @@ def update_data_dir():
         path = Path(__file__).parent / data_path
 
         # Week-old files
-        prev_week = int(datetime.datetime.now().strftime('%Y%m%d')) - 7
+        prev_day = int(datetime.datetime.now().strftime('%Y%m%d')) - 1
         
         csv_files = glob.glob(os.path.join(path, '*.csv'))
 
@@ -55,7 +55,7 @@ def update_data_dir():
 
             try: 
                 filedate = datetime.datetime.strptime(date_suffix, '%Y%m%d')
-                if filedate < prev_week:
+                if filedate < prev_day:
                     os.remove(csv)
                     print(f'Deleted file: {filename}')
             except ValueError:
@@ -130,3 +130,32 @@ def sie_index_transformer():
     df.to_csv(dest_path)
 
     return df
+
+def create_train_test_sets(df):
+    """
+    Partition the data into training and test sets.
+    """
+
+    # Read from training directory
+    # today = datetime.datetime.now().strftime('%Y%m%d')
+    # filename = f'../data/training/arctic_sie_clean_{today}.csv'
+    # train_path = Path(__file__).parent / filename
+    # df = pd.read_csv(train_path)
+
+    # df.drop(columns=[['year', 'month']])
+
+    # Set the split boundary
+    split_date = '2013-01-01'
+
+    # Partitioning the dataset
+    train_nfc = df[df['date'] < split_date]
+    test_nfc = df[df['date'] >= split_date]
+
+    # Store training and test set
+
+    print('In order to set yearly based limitations to partition the dataset,') 
+    print("a split date parameter is used to separate the data at the year's start.")
+
+    return train_nfc, test_nfc
+
+
